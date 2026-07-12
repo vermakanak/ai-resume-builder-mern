@@ -119,7 +119,6 @@ Return ONLY valid JSON in this exact format. Do not add extra text.
 }
 `;
     
-        console.log("AI MODEL:", process.env.OPENAI_MODEL);
         let response;
 
 for (let attempt = 1; attempt <= 3; attempt++) {
@@ -150,7 +149,6 @@ for (let attempt = 1; attempt <= 3; attempt++) {
   }
 }
         const extractedData = response.choices[0].message.content;
-        console.log("AI extracted data:", extractedData);
 
         let cleanJson = extractedData.trim();
 

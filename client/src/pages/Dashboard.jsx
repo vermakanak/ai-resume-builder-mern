@@ -65,10 +65,7 @@ const Dashboard = () => {
   try {
     const resumeText = await pdfToText(resume);
 
-    console.log("title:", title);
-    console.log("resume:", resume);
-    console.log("token:", token);
-    console.log("resumeText:", resumeText);
+    
 
     if (!resumeText || !resumeText.trim()) {
       toast.error("Could not read text from this PDF. Try another PDF.");
