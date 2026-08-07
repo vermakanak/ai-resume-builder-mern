@@ -1,132 +1,119 @@
-# Resume Builder
+# AI Resume Builder
 
-An AI-assisted full-stack resume builder that helps users create, manage, and improve professional resumes from one modern web application.
+An AI-powered full-stack resume builder that helps users create, edit, and download professional resumes with a live preview and AI-assisted content enhancement.
 
-> Built as a learning project to explore a complete MERN-style workflow: responsive React UI, REST APIs, secure authentication, database persistence, file uploads, PDF text extraction, and AI integration.
+## Live Demo
+
+**[Try the application](https://resume-builder-two-sooty.vercel.app)**
+
+> The Render API uses a free instance and may take up to a minute to wake up on the first request.
 
 ## Features
 
-- Create and manage resume information in a clean web interface.
-- Secure user authentication with password hashing and JSON Web Tokens.
-- Store user and application data in MongoDB.
-- Upload files through the Express API, with ImageKit support for media handling.
-- Extract text from PDF resumes in the client.
-- Use OpenAI-powered functionality to support resume-related workflows.
-- Receive clear feedback through toast notifications and responsive UI states.
+- Secure sign-up and login with JWT authentication.
+- Create and manage multiple resumes.
+- Edit personal details, professional summaries, experience, education, skills, and projects.
+- See changes in a live resume preview.
+- Enhance professional content with AI assistance.
+- Select resume templates and accent colors.
+- Upload profile images and download resumes.
+- Share public resumes with a link.
+
+## Screenshots
+
+### Sign Up
+
+![Sign-up screen](./screenshots/sign-up.jpg)
+
+### AI-Enhanced Professional Summary
+
+![AI-enhanced professional summary and live preview](./screenshots/ai-summary.jpg)
+
+### Resume Editor and Live Preview
+
+![Resume editor and live preview](./screenshots/resume-editor.jpg)
 
 ## Tech Stack
 
 | Area | Technologies |
 | --- | --- |
-| Frontend | React 19, Vite, Tailwind CSS, React Router, Redux Toolkit |
-| Backend | Node.js, Express 5 |
-| Database | MongoDB with Mongoose |
-| Authentication | JWT and bcrypt |
-| File & AI services | Multer, ImageKit, OpenAI |
-| HTTP & UI tools | Axios, Lucide React, React Hot Toast |
+| Frontend | React, Vite, Tailwind CSS, Redux Toolkit, React Router |
+| Backend | Node.js, Express |
+| Database | MongoDB and Mongoose |
+| Authentication | JSON Web Tokens and bcrypt |
+| AI & media | OpenAI, ImageKit, Multer |
+| Deployment | Vercel and Render |
 
-## Project Structure
-
-```text
-Resume_builder/
-├── client/                 # React + Vite frontend
-│   ├── public/
-│   └── src/
-└── server/                 # Express API
-    ├── configs/
-    ├── controllers/
-    ├── middlewares/
-    ├── models/
-    └── routes/
-```
-
-## Getting Started
+## Run Locally
 
 ### Prerequisites
 
 - Node.js 18 or later
 - npm
-- A MongoDB database (MongoDB Atlas or local MongoDB)
-- API credentials for any enabled OpenAI and ImageKit features
+- MongoDB database connection string
+- OpenAI and ImageKit credentials for the related features
 
-### 1. Clone the repository
+### 1. Clone the project
 
 ```bash
-git clone https://github.com/vermakanak/Resume_builder.git
-cd Resume_builder
+git clone https://github.com/vermakanak/ai-resume-builder-mern.git
+cd ai-resume-builder-mern
 ```
 
-### 2. Configure the backend
+### 2. Start the backend
 
 ```bash
 cd server
 npm install
 ```
 
-Create a `.env` file in `server/` and add the values required by your server configuration. Typical values include:
+Create `server/.env`:
 
 ```env
 MONGODB_URI=your_mongodb_connection_string
 JWT_SECRET=your_secure_jwt_secret
 OPENAI_API_KEY=your_openai_api_key
+OPENAI_BASE_URL=your_openai_base_url
 IMAGEKIT_PUBLIC_KEY=your_imagekit_public_key
 IMAGEKIT_PRIVATE_KEY=your_imagekit_private_key
 IMAGEKIT_URL_ENDPOINT=your_imagekit_url_endpoint
+CLIENT_URL=http://localhost:5173
 ```
 
-Start the API:
+Start the server:
 
 ```bash
-npm run server
+npm run dev
 ```
 
-### 3. Configure the frontend
+### 3. Start the frontend
 
-Open a second terminal:
+Open a new terminal:
 
 ```bash
 cd client
 npm install
+```
+
+Create `client/.env`:
+
+```env
+VITE_BASE_URL=http://localhost:3000
+```
+
+Start the app:
+
+```bash
 npm run dev
 ```
 
-Vite will display the local application URL, usually `http://localhost:5173`.
+Open the URL shown by Vite, usually `http://localhost:5173`.
 
-## Available Scripts
+## Environment Notes
 
-### Client
-
-```bash
-npm run dev      # Start the development server
-npm run build    # Create a production build
-npm run lint     # Run ESLint
-npm run preview  # Preview the production build
-```
-
-### Server
-
-```bash
-npm run server   # Start the API with nodemon
-npm start        # Start the API with Node.js
-```
-
-## Environment & Security Notes
-
-- Never commit `.env` files or API keys.
-- Use a strong, unique value for `JWT_SECRET`.
-- Ensure the frontend API base URL matches the running backend before deployment.
-- Add production CORS origins before publishing the application.
-
-## Roadmap
-
-- Add resume templates and live previews.
-- Add PDF export and download.
-- Improve validation and error handling.
-- Add tests and a deployed demo link.
-
-## Contributing
-
-Contributions, suggestions, and bug reports are welcome. Please open an issue first for substantial changes.
+- Never commit `.env` files or expose API keys.
+- For production, set `VITE_BASE_URL` to your deployed backend URL without `/api`.
+- Set `CLIENT_URL` on the backend to the exact deployed frontend URL to allow CORS requests.
 
 ## Author
 
