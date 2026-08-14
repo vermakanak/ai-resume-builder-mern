@@ -12,13 +12,12 @@ const PORT = process.env.PORT || 3000;
 
 const allowedOrigins = [
     "http://localhost:5173",
-    process.env.CLIENT_URL,
-].filter(Boolean);
+    "https://resume-builder-kanak13.vercel.app",
+];
 
 app.use(
     cors({
         origin: (origin, callback) => {
-            // Allows Postman, mobile apps and server-to-server requests
             if (!origin) {
                 return callback(null, true);
             }
@@ -27,9 +26,12 @@ app.use(
                 return callback(null, true);
             }
 
-            return callback(new Error("Not allowed by CORS"));
+            console.error("CORS blocked origin:", origin);
+            return callback(
+                new Error(`Origin ${origin} is not allowed by CORS`)
+            );
         },
-        methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+        methods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
         allowedHeaders: ["Content-Type", "Authorization"],
     })
 );
@@ -50,6 +52,16 @@ app.get("/api/health", (req, res) => {
 app.use("/api/user", userRouter);
 app.use("/api/resumes", resumeRouter);
 app.use("/api/ai", aiRouter);
+
+// Return readable CORS and server errors
+app.use((error, req, res, next) => {
+    console.error(error.message);
+
+    res.status(500).json({
+        success: false,
+        message: error.message,
+    });
+});
 
 const startServer = async () => {
     try {
