@@ -27,11 +27,11 @@ An AI-powered full-stack resume builder that helps users create, edit, and downl
 ### Sign Up
 ![Sign-up screen](./screenshots/sign-up.jpeg)
 
-### AI-Enhanced Professional Summary
-![AI summary](./screenshots/ai-summary.jpeg)
+### Resume Dashboard
+![Resume dashboard](./screenshots/dashboard.jpeg)
 
-### Resume Editor and Live Preview
-![Resume editor](./screenshots/resume-editor.jpeg)
+### AI-Enhanced Professional Summary
+![AI-enhanced professional summary and live preview](./screenshots/ai-summary.jpeg)
 
 ## Tech Stack
 
